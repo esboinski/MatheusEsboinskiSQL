@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Fev-2025 às 19:52
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- Tempo de geração: 11-Fev-2025 às 20:59
+-- Versão do servidor: 10.4.28-MariaDB
+-- versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -104,7 +104,9 @@ INSERT INTO `item_de_pedido` (`pedido_num_pedido`, `produto_cod_produto`, `qntd`
 (148, 77, 3),
 (148, 78, 30),
 (189, 78, 45),
-(203, 31, 6);
+(203, 31, 6),
+(101, 78, 18),
+(143, 78, 10);
 
 -- --------------------------------------------------------
 
@@ -164,16 +166,16 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`cod_produto`, `unid_produto`, `desc_produto`, `valor_unit`) VALUES
-(13, 'G', 'Ouro', '6.18'),
-(22, 'M', 'Linho', '0.11'),
-(25, 'Kg', 'Queijo', '0.97'),
-(30, 'SAC', 'Açucar', '0.30'),
-(31, 'Bar', 'Chocolate', '0.87'),
-(45, 'M', 'Madeira', '0.25'),
-(53, 'M', 'Linha', '1.80'),
-(77, 'M', 'Papel', '1.05'),
-(78, 'L', 'Vinho', '2.00'),
-(87, 'M', 'Cano', '1.97');
+(13, 'G', 'Ouro', 6.18),
+(22, 'M', 'Linho', 0.11),
+(25, 'Kg', 'Queijo', 0.97),
+(30, 'SAC', 'Açucar', 0.30),
+(31, 'Bar', 'Chocolate', 0.87),
+(45, 'M', 'Madeira', 0.25),
+(53, 'M', 'Linha', 1.80),
+(77, 'M', 'Papel', 1.05),
+(78, 'L', 'Vinho', 2.00),
+(87, 'M', 'Cano', 1.97);
 
 -- --------------------------------------------------------
 
@@ -193,71 +195,15 @@ CREATE TABLE `vendedor` (
 --
 
 INSERT INTO `vendedor` (`cod_vendedor`, `nome_vendedor`, `sal_fixo`, `faixa_comissao`) VALUES
-(11, 'João', '2780.00', 'C'),
-(101, 'João', '2650.32', 'C'),
-(111, 'Carlos', '2490.00', 'A'),
-(209, 'José', '1800.00', 'C'),
-(213, 'Jonas', '2300.50', 'A'),
-(240, 'Antonio', '9500.00', 'C'),
-(250, 'Mauricío', '2930.00', 'B'),
-(310, 'Josias', '870.00', 'B'),
-(720, 'Felipe', '4600.00', 'A');
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices para tabela `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`cod_cliente`);
-
---
--- Índices para tabela `item_de_pedido`
---
-ALTER TABLE `item_de_pedido`
-  ADD PRIMARY KEY (`pedido_num_pedido`,`produto_cod_produto`),
-  ADD KEY `fk_pedido_has_produto_produto1_idx` (`produto_cod_produto`),
-  ADD KEY `fk_pedido_has_produto_pedido_idx` (`pedido_num_pedido`);
-
---
--- Índices para tabela `pedido`
---
-ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`num_pedido`,`vendedor_cod_vendedor`,`cliente_cod_cliente`),
-  ADD KEY `fk_pedido_vendedor1_idx` (`vendedor_cod_vendedor`),
-  ADD KEY `fk_pedido_cliente1_idx` (`cliente_cod_cliente`);
-
---
--- Índices para tabela `produto`
---
-ALTER TABLE `produto`
-  ADD PRIMARY KEY (`cod_produto`);
-
---
--- Índices para tabela `vendedor`
---
-ALTER TABLE `vendedor`
-  ADD PRIMARY KEY (`cod_vendedor`);
-
---
--- Restrições para despejos de tabelas
---
-
---
--- Limitadores para a tabela `item_de_pedido`
---
-ALTER TABLE `item_de_pedido`
-  ADD CONSTRAINT `fk_pedido_has_produto_pedido` FOREIGN KEY (`pedido_num_pedido`) REFERENCES `pedido` (`num_pedido`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_pedido_has_produto_produto1` FOREIGN KEY (`produto_cod_produto`) REFERENCES `produto` (`cod_produto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `fk_pedido_cliente1` FOREIGN KEY (`cliente_cod_cliente`) REFERENCES `cliente` (`cod_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_pedido_vendedor1` FOREIGN KEY (`vendedor_cod_vendedor`) REFERENCES `vendedor` (`cod_vendedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+(11, 'João', 2780.00, 'C'),
+(101, 'João', 2650.32, 'C'),
+(111, 'Carlos', 2490.00, 'A'),
+(209, 'José', 1800.00, 'C'),
+(213, 'Jonas', 2300.50, 'A'),
+(240, 'Antonio', 9500.00, 'C'),
+(250, 'Mauricío', 2930.00, 'B'),
+(310, 'Josias', 870.00, 'B'),
+(720, 'Felipe', 4600.00, 'A');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
