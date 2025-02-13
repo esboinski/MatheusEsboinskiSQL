@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Fev-2025 às 20:59
+-- Tempo de geração: 13/02/2025 às 21:13
 -- Versão do servidor: 10.4.28-MariaDB
--- versão do PHP: 8.2.4
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,7 +27,7 @@ USE `matheusesboinskiestoque`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
+-- Estrutura para tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -42,7 +42,7 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
 INSERT INTO `cliente` (`cod_cliente`, `nome_cliente`, `endereco`, `cidade`, `cep`, `uf`, `cnpj`, `ie`) VALUES
@@ -64,7 +64,7 @@ INSERT INTO `cliente` (`cod_cliente`, `nome_cliente`, `endereco`, `cidade`, `cep
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `item_de_pedido`
+-- Estrutura para tabela `item_de_pedido`
 --
 
 CREATE TABLE `item_de_pedido` (
@@ -74,7 +74,7 @@ CREATE TABLE `item_de_pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `item_de_pedido`
+-- Despejando dados para a tabela `item_de_pedido`
 --
 
 INSERT INTO `item_de_pedido` (`pedido_num_pedido`, `produto_cod_produto`, `qntd`) VALUES
@@ -111,7 +111,7 @@ INSERT INTO `item_de_pedido` (`pedido_num_pedido`, `produto_cod_produto`, `qntd`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pedido`
+-- Estrutura para tabela `pedido`
 --
 
 CREATE TABLE `pedido` (
@@ -124,7 +124,7 @@ CREATE TABLE `pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `pedido`
+-- Despejando dados para a tabela `pedido`
 --
 
 INSERT INTO `pedido` (`num_pedido`, `prazo_entrega`, `cod_cliente`, `cod_vendedor`, `vendedor_cod_vendedor`, `cliente_cod_cliente`) VALUES
@@ -151,7 +151,7 @@ INSERT INTO `pedido` (`num_pedido`, `prazo_entrega`, `cod_cliente`, `cod_vendedo
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produto`
+-- Estrutura para tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -162,7 +162,7 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `produto`
+-- Despejando dados para a tabela `produto`
 --
 
 INSERT INTO `produto` (`cod_produto`, `unid_produto`, `desc_produto`, `valor_unit`) VALUES
@@ -180,7 +180,7 @@ INSERT INTO `produto` (`cod_produto`, `unid_produto`, `desc_produto`, `valor_uni
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `vendedor`
+-- Estrutura para tabela `vendedor`
 --
 
 CREATE TABLE `vendedor` (
@@ -191,7 +191,7 @@ CREATE TABLE `vendedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `vendedor`
+-- Despejando dados para a tabela `vendedor`
 --
 
 INSERT INTO `vendedor` (`cod_vendedor`, `nome_vendedor`, `sal_fixo`, `faixa_comissao`) VALUES
@@ -204,6 +204,34 @@ INSERT INTO `vendedor` (`cod_vendedor`, `nome_vendedor`, `sal_fixo`, `faixa_comi
 (250, 'Mauricío', 2930.00, 'B'),
 (310, 'Josias', 870.00, 'B'),
 (720, 'Felipe', 4600.00, 'A');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`cod_cliente`);
+
+--
+-- Índices de tabela `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`num_pedido`);
+
+--
+-- Índices de tabela `produto`
+--
+ALTER TABLE `produto`
+  ADD PRIMARY KEY (`cod_produto`);
+
+--
+-- Índices de tabela `vendedor`
+--
+ALTER TABLE `vendedor`
+  ADD PRIMARY KEY (`cod_vendedor`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
