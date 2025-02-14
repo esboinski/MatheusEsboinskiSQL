@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/02/2025 às 21:13
+-- Tempo de geração: 14/02/2025 às 20:11
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `matheusesboinskiestoque`
 --
-DROP DATABASE IF EXISTS `matheusesboinskiestoque`;
 CREATE DATABASE IF NOT EXISTS `matheusesboinskiestoque` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `matheusesboinskiestoque`;
 
@@ -80,7 +79,7 @@ CREATE TABLE `item_de_pedido` (
 INSERT INTO `item_de_pedido` (`pedido_num_pedido`, `produto_cod_produto`, `qntd`) VALUES
 (91, 77, 40),
 (97, 77, 20),
-(101, 31, 9),
+(101, 31, 16),
 (103, 53, 37),
 (104, 53, 32),
 (105, 78, 10),
@@ -118,35 +117,33 @@ CREATE TABLE `pedido` (
   `num_pedido` int(11) NOT NULL COMMENT 'este campo é responsavel por  armazenar  o número do pedido',
   `prazo_entrega` int(10) DEFAULT NULL COMMENT 'este campo é responsavel por  armazenar o prazo da entrega',
   `cod_cliente` int(11) NOT NULL COMMENT 'este campo é responsavel por  armazenar o código do cliente',
-  `cod_vendedor` int(11) NOT NULL COMMENT 'este campo é responsavel por  armazenar o código do vendedor ',
-  `vendedor_cod_vendedor` int(11) NOT NULL,
-  `cliente_cod_cliente` int(11) NOT NULL
+  `cod_vendedor` int(11) NOT NULL COMMENT 'este campo é responsavel por  armazenar o código do vendedor '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pedido`
 --
 
-INSERT INTO `pedido` (`num_pedido`, `prazo_entrega`, `cod_cliente`, `cod_vendedor`, `vendedor_cod_vendedor`, `cliente_cod_cliente`) VALUES
-(91, 20, 260, 11, 0, 0),
-(97, 20, 720, 101, 0, 0),
-(98, 20, 410, 209, 0, 0),
-(101, 15, 720, 101, 0, 0),
-(103, 20, 260, 11, 0, 0),
-(104, 30, 110, 101, 0, 0),
-(105, 15, 180, 240, 0, 0),
-(108, 15, 290, 310, 0, 0),
-(111, 20, 260, 240, 0, 0),
-(112, 20, 260, 240, 0, 0),
-(119, 30, 390, 250, 0, 0),
-(121, 20, 410, 209, 0, 0),
-(127, 10, 410, 11, 0, 0),
-(137, 20, 720, 720, 0, 0),
-(138, 20, 260, 11, 0, 0),
-(143, 30, 20, 111, 0, 0),
-(148, 20, 720, 101, 0, 0),
-(189, 15, 870, 213, 0, 0),
-(203, 30, 830, 250, 0, 0);
+INSERT INTO `pedido` (`num_pedido`, `prazo_entrega`, `cod_cliente`, `cod_vendedor`) VALUES
+(91, 20, 260, 11),
+(97, 20, 720, 101),
+(98, 20, 410, 209),
+(101, 15, 720, 101),
+(103, 20, 260, 11),
+(104, 30, 110, 101),
+(105, 15, 180, 240),
+(108, 15, 290, 310),
+(111, 20, 260, 240),
+(112, 20, 260, 240),
+(119, 30, 390, 250),
+(121, 20, 410, 209),
+(127, 10, 410, 11),
+(137, 20, 720, 720),
+(138, 20, 260, 11),
+(143, 30, 20, 111),
+(148, 20, 720, 101),
+(189, 15, 870, 213),
+(203, 30, 830, 250);
 
 -- --------------------------------------------------------
 
